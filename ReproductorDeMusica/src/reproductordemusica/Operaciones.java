@@ -14,7 +14,7 @@ public class Operaciones {
     Nodo cola;
     String cancionEncontrada;
     
-    public void insertar(String cancion){
+    public void add(String cancion){
         Nodo nuevo = new Nodo();
         nuevo.setCancion(cancion);
         if (cabeza == null) {
@@ -45,7 +45,10 @@ public class Operaciones {
         } while (actual.getSiguente() != cabeza);
         
     }
-    public void reproducirEnAleatorio(){
+    public void reproducirEnAleatorio(boolean cancionSiguiente){
+        
+    }
+    public void reproducirNormalmente(boolean cancionSiguiente){
         
     }
     
