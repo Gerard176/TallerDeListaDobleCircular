@@ -23,15 +23,11 @@ public class Operaciones {
         if (cabeza == null) {
             cabeza = nuevo;
             cola = nuevo;
-            cabeza.setSiguente(cola);
-            cola.setSiguente(cabeza);
         }else{
             
-            cabeza.setSiguente(nuevo);
-            nuevo.setAnterior(cabeza);
-            cola.setAnterior(nuevo);
-            nuevo.setSiguente(cola);
-            cabeza = nuevo;
+           cola.setSiguente(nuevo);
+            nuevo.setAnterior(cola);
+            cola = nuevo;
             
         }
     
@@ -51,32 +47,13 @@ public class Operaciones {
       return null;  
     }
     
-    public void reproducirEnAleatorio(boolean escancionSiguiente, String CancionReproduciendose){
-        if (escancionSiguiente) {
-            Nodo actual = buscar(CancionReproduciendose);
-            System.out.println(actual.getCancion());
-            
-            int numeroAleatorio = (int) Math.round(Math.random()*15)+1;
-            System.out.println(numeroAleatorio);
-            
-            for (int i = 0; i < numeroAleatorio; i++) {
-                System.out.println("Pasando: "+actual.getCancion());
-                actual = actual.getSiguente();
-                cancionActual = actual.getCancion();
-            }
-        }
+    public void imprimir(){
+        Nodo tem = cabeza;
+        do {            
+            System.out.println(tem.getCancion());
+            tem = tem.getSiguente();
+        } while (tem!=null);
     }
-    public void reproducirNormalmente(boolean escancionSiguiente, String CancionReproduciendose){
-        if (escancionSiguiente) {
-            Nodo actual = buscar(CancionReproduciendose);
-            actual.getSiguente();
-            cancionActual = actual.getCancion();
-        }else{
-            Nodo actual = buscar(CancionReproduciendose);
-            actual.getAnterior();
-            cancionActual = actual.getCancion();
-            
-        }
-    }
+    
     
 }
