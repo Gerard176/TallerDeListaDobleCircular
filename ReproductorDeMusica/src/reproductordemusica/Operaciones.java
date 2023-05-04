@@ -23,14 +23,11 @@ public class Operaciones {
         if (cabeza == null) {
             cabeza = nuevo;
             cola = nuevo;
-            cabeza.setSiguente(cola);
-            cola.setSiguente(cabeza);
+            
         }else{
             
-            cabeza.setSiguente(nuevo);
-            nuevo.setAnterior(cabeza);
-            cola.setAnterior(nuevo);
-            nuevo.setSiguente(cola);
+            nuevo.setSiguente(cabeza);
+            cabeza.setAnterior(nuevo);
             cabeza = nuevo;
             
         }
@@ -42,38 +39,27 @@ public class Operaciones {
             if (actual.getCancion().equals(cancion)) {
                 System.out.println("Cancion encontrada");
                 return cancionEncontrada = actual;
-            }else{
-                System.out.println("No se encontro");
+                
             }
+            System.out.println(actual.getCancion());
             actual = actual.getSiguente();
             
-        } while (actual.getSiguente() != cabeza);
+        } while (actual != cabeza);
       return null;  
     }
     
-    public void reproducirEnAleatorio(boolean escancionSiguiente, String CancionReproduciendose){
-        if (escancionSiguiente) {
-            Nodo actual = buscar(CancionReproduciendose);
-            System.out.println(actual.getCancion());
-            
-            int numeroAleatorio = (int) Math.round(Math.random()*15)+1;
-            System.out.println(numeroAleatorio);
-            
-            for (int i = 0; i < numeroAleatorio; i++) {
-                System.out.println("Pasando: "+actual.getCancion());
-                actual = actual.getSiguente();
-                cancionActual = actual.getCancion();
-            }
-        }
-    }
+   
     public void reproducirNormalmente(boolean escancionSiguiente, String CancionReproduciendose){
         if (escancionSiguiente) {
             Nodo actual = buscar(CancionReproduciendose);
-            actual.getSiguente();
+            
+            actual = actual.getSiguente();
+            System.out.println(actual.getCancion());
             cancionActual = actual.getCancion();
         }else{
             Nodo actual = buscar(CancionReproduciendose);
-            actual.getAnterior();
+            actual = actual.getAnterior();
+            System.out.println(actual.getCancion());
             cancionActual = actual.getCancion();
             
         }

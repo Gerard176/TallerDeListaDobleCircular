@@ -41,7 +41,6 @@ public class Pantalla extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         Pausar = new javax.swing.JToggleButton();
-        EstiloDeReproduccion = new javax.swing.JToggleButton();
         jLabel2 = new javax.swing.JLabel();
         CancionReproduciendose = new javax.swing.JLabel();
         siguienteCancion = new javax.swing.JButton();
@@ -53,13 +52,6 @@ public class Pantalla extends javax.swing.JFrame {
         jLabel1.setText("Reproductor de musica");
 
         Pausar.setText(">");
-
-        EstiloDeReproduccion.setText("Aleatorio");
-        EstiloDeReproduccion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EstiloDeReproduccionActionPerformed(evt);
-            }
-        });
 
         jLabel2.setText("Reproduciendo ahora");
 
@@ -96,8 +88,7 @@ public class Pantalla extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
-                                .addGap(18, 18, 18)
-                                .addComponent(EstiloDeReproduccion))
+                                .addGap(96, 96, 96))
                             .addComponent(CancionReproduciendose, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
@@ -117,11 +108,9 @@ public class Pantalla extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ListaDeCanciones, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
+                .addComponent(ListaDeCanciones, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(EstiloDeReproduccion))
+                .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(CancionReproduciendose)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -153,20 +142,11 @@ public class Pantalla extends javax.swing.JFrame {
         CancionReproduciendose.setText(op.cancionActual);
     }//GEN-LAST:event_CancionAnteriorActionPerformed
 
-    private void EstiloDeReproduccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EstiloDeReproduccionActionPerformed
-        
-    }//GEN-LAST:event_EstiloDeReproduccionActionPerformed
-
     private void siguienteCancionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siguienteCancionActionPerformed
         //siguiente si se le aplica el estilo de reproduccion
         boolean esCancionSiguiente = true;
-        if(EstiloDeReproduccion.isSelected()){
-            op.reproducirEnAleatorio(esCancionSiguiente,CancionReproduciendose.getText());
-            CancionReproduciendose.setText(op.cancionActual);
-        }else{
-            op.reproducirNormalmente(esCancionSiguiente, CancionReproduciendose.getText());
-        }
-        
+        op.reproducirNormalmente(esCancionSiguiente, CancionReproduciendose.getText());
+                
         
     }//GEN-LAST:event_siguienteCancionActionPerformed
     
@@ -199,7 +179,7 @@ public class Pantalla extends javax.swing.JFrame {
                 canciones+=cola.getCancion()+"<p>";
                 cola = cola.getSiguente();
                 
-            } while (cola != op.cabeza);
+            } while (cola != null);
            
         }
         canciones+="<html>";
@@ -246,7 +226,6 @@ public class Pantalla extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CancionAnterior;
     private javax.swing.JLabel CancionReproduciendose;
-    private javax.swing.JToggleButton EstiloDeReproduccion;
     private javax.swing.JLabel ListaDeCanciones;
     private javax.swing.JToggleButton Pausar;
     private javax.swing.JLabel jLabel1;

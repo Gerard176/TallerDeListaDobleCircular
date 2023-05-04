@@ -36,6 +36,10 @@ public class Nodo {
     public void setAnterior(Nodo Anterior) {
         this.Anterior = Anterior;
     }
+
+    void setSiguiente(Nodo cabeza) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
     
 }
