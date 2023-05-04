@@ -26,6 +26,7 @@ public class Pantalla extends javax.swing.JFrame {
         initComponents();
         inicializarCanciones();
         cargarCanciones();
+        CancionReproduciendose.setText(op.cola.getCancion());
     }
 
     /**
@@ -84,32 +85,31 @@ public class Pantalla extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(71, 71, 71)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(CancionReproduciendose, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(11, 11, 11))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(CancionAnterior, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Pausar)
-                .addGap(32, 32, 32)
-                .addComponent(siguienteCancion, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addComponent(jLabel1))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ListaDeCanciones, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
                                 .addGap(18, 18, 18)
-                                .addComponent(EstiloDeReproduccion)))))
-                .addContainerGap(11, Short.MAX_VALUE))
+                                .addComponent(EstiloDeReproduccion))
+                            .addComponent(CancionReproduciendose, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(ListaDeCanciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(CancionAnterior, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(45, 45, 45)
+                        .addComponent(Pausar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(siguienteCancion, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(26, 26, 26))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -148,8 +148,9 @@ public class Pantalla extends javax.swing.JFrame {
 
     private void CancionAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancionAnteriorActionPerformed
         //Anterior contiene la anterior cancion que se estaba escuchando
-        boolean cancionSiguiente = false;
-        op.reproducirNormalmente(cancionSiguiente);
+        boolean esCancionSiguiente = false;
+        op.reproducirNormalmente(esCancionSiguiente,CancionReproduciendose.getText());
+        CancionReproduciendose.setText(op.cancionActual);
     }//GEN-LAST:event_CancionAnteriorActionPerformed
 
     private void EstiloDeReproduccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EstiloDeReproduccionActionPerformed
@@ -158,11 +159,12 @@ public class Pantalla extends javax.swing.JFrame {
 
     private void siguienteCancionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siguienteCancionActionPerformed
         //siguiente si se le aplica el estilo de reproduccion
-        boolean cancionSiguiente = true;
+        boolean esCancionSiguiente = true;
         if(EstiloDeReproduccion.isSelected()){
-            op.reproducirEnAleatorio(cancionSiguiente);
+            op.reproducirEnAleatorio(esCancionSiguiente,CancionReproduciendose.getText());
+            CancionReproduciendose.setText(op.cancionActual);
         }else{
-            op.reproducirNormalmente(cancionSiguiente);
+            op.reproducirNormalmente(esCancionSiguiente, CancionReproduciendose.getText());
         }
         
         

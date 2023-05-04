@@ -12,7 +12,10 @@ public class Operaciones {
     
     Nodo cabeza;
     Nodo cola;
-    String cancionEncontrada;
+    Nodo cancionEncontrada;
+    String cancionActual;
+    
+    
     
     public void add(String cancion){
         Nodo nuevo = new Nodo();
@@ -33,23 +36,47 @@ public class Operaciones {
         }
     
     }
-    public void buscar(String cancion){
+    public Nodo buscar(String cancion){
         Nodo actual = cola;
         do {            
             if (actual.getCancion().equals(cancion)) {
                 System.out.println("Cancion encontrada");
-                cancionEncontrada = actual.getCancion();
+                return cancionEncontrada = actual;
+            }else{
+                System.out.println("No se encontro");
             }
             actual = actual.getSiguente();
             
         } while (actual.getSiguente() != cabeza);
-        
+      return null;  
     }
-    public void reproducirEnAleatorio(boolean cancionSiguiente){
-        
+    
+    public void reproducirEnAleatorio(boolean escancionSiguiente, String CancionReproduciendose){
+        if (escancionSiguiente) {
+            Nodo actual = buscar(CancionReproduciendose);
+            System.out.println(actual.getCancion());
+            
+            int numeroAleatorio = (int) Math.round(Math.random()*15)+1;
+            System.out.println(numeroAleatorio);
+            
+            for (int i = 0; i < numeroAleatorio; i++) {
+                System.out.println("Pasando: "+actual.getCancion());
+                actual = actual.getSiguente();
+                cancionActual = actual.getCancion();
+            }
+        }
     }
-    public void reproducirNormalmente(boolean cancionSiguiente){
-        
+    public void reproducirNormalmente(boolean escancionSiguiente, String CancionReproduciendose){
+        if (escancionSiguiente) {
+            Nodo actual = buscar(CancionReproduciendose);
+            actual.getSiguente();
+            cancionActual = actual.getCancion();
+        }else{
+            Nodo actual = buscar(CancionReproduciendose);
+            actual.getAnterior();
+            cancionActual = actual.getCancion();
+            
+        }
     }
     
 }
